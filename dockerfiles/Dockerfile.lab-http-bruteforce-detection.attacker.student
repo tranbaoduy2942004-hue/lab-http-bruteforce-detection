@@ -1,0 +1,21 @@
+FROM labtainers/labtainer.base2:latest
+
+ARG labdir
+ARG imagedir
+ARG lab
+
+LABEL version="3" base="labtainers/labtainer.base2.739eee77f8d3"
+
+ADD $labdir/sys_$lab.tar.gz /
+
+RUN id ubuntu >/dev/null 2>&1 || \
+    useradd -m -s /bin/bash ubuntu
+
+RUN install -d -o ubuntu -g ubuntu \
+    /home/ubuntu/auth-lab \
+    /home/ubuntu/.local/bin \
+    /home/ubuntu/.local/result \
+    /home/ubuntu/.local/zip
+
+ENV HOME=/home/ubuntu
+WORKDIR /home/ubuntu

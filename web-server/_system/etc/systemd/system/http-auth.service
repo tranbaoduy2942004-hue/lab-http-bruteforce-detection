@@ -1,0 +1,13 @@
+[Unit]
+Description=HTTP Authentication Lab Server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+ExecStart=/usr/bin/python3 /usr/local/bin/http_auth.py
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
